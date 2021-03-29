@@ -7,7 +7,7 @@ writeStream.write('aef35ghhjdk74hja83ksnfjk888sfsf');
 
 // the finish event is emitted when all data has been flushed from the stream
 writeStream.on('finish', () => {
-    console.log('wrote all data to file');
+  console.log('wrote all data to file');
 });
 
 // close the stream

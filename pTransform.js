@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const csv = require('csv-parser');
 const fs = require('fs');
 
@@ -7,7 +8,7 @@ let endFile = './updated_csv/cleanPhotos.csv';
 
 const isValidURL = (string) => {
   var res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-  return (res !== null)
+  return (res !== null);
 };
 
 
@@ -30,7 +31,7 @@ fs.createReadStream(filepath)
       sendRow = false;
     }
 
-// id,answer_id,url
+    // id,answer_id,url
     if (sendRow) {
       const newRow = {
         id: row.id,
@@ -42,9 +43,7 @@ fs.createReadStream(filepath)
 
   })
   .on('end', function () {
-    // console.table(users);
     writeToCSVFile(newRows);
-    // TODO: SAVE users data to another file
   });
 
 
@@ -68,34 +67,3 @@ const extractAsCSV = (newRows) => {
   );
   return header.concat(rows).join('\n');
 };
-
-
-// id: row.id,
-//       product_id: row.product_id,
-//       body: row.body,
-//       date_written: row.date_written,
-//       asker_name: row.asker_name,
-//       asker_email: row.asker_email,
-//       reported: row.reported,
-//       helpful: row.helpful,
-
-
-// var data = fs.readFileSync(filepath, 'utf8');
-// var lines = data.split('\n');
-
-
-
-// const get_line = (filename, line_no, callback) => {
-//   var data = fs.readFileSync(filename, 'utf8');
-//   var lines = data.split('\n');
-
-//   if (+line_no > lines.length) {
-//     throw new Error('File end reached without finding line');
-//   }
-
-//   callback(null, lines[+line_no]);
-// }
-
-// get_line(filepath, 9, function(err, line) {
-//   console.log('The line: ' + line);
-// });

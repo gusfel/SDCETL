@@ -37,10 +37,6 @@ let first = true;
   }
 }());
 
-
-
-
-
 const validateEmail = (email) => {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
@@ -69,9 +65,7 @@ const isValidDate = (dateString) => {
 const validate = (row, cb) => {
   let sendRow = true;
   const column = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-
   const rowVals = [column[0], column[1], column[2], column[3], column[4], column[5]];
-  // const rowVals = [row.id, row[' question_id'], row[' body'], row[' date_written'], row[' answerer_name'], row[' answerer_email']];
   const checkNotNull = rowVals.every(val => { return val !== null; });
 
   if (Number(column[0]) < 1) {
@@ -102,34 +96,6 @@ const validate = (row, cb) => {
   }
   if (sendRow) {
     const newRow = `${column[0]},${column[1]},${column[2]},${column[3]},${column[4]},${column[5]},${false},${column[7]}`
-      // const newRow = {
-      //   id: column[0],
-      //   question_id: column[1],
-      //   body: `'${column[2]}'`,
-      //   date_written: column[3],
-      //   answerer_name: `'${column[4]}'`,
-      //   answerer_email: `'${column[4]}'`,
-      //   reported: true,
-      //   helpful: column[7],
-      // };
     cb(newRow)
   }
 }
-
-
-// const rows = [];
-
-// let done = true
-// fs.createReadStream('./updated_csv/cleanAnswers.csv')
-//   .pipe(csv())
-//   .on('data', function (row) {
-
-
-//     if (done) {
-//       rows.push(row);
-//     }
-//     done = false;
-//   })
-//   .on('end', function () {
-//     console.log(rows)
-//   });
